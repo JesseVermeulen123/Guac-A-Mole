@@ -35,8 +35,8 @@ Task definition in order of priority
 ## Additional Links
 
 
-### Trello
-[Link url](https://trello.com)
+### Trello (Actually GitHub Project)
+[Guac-A-Mole](https://github.com/JesseVermeulen123/Guac-A-Mole/projects/1)
 
 
 ### Slides
