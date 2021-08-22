@@ -1,6 +1,6 @@
 # Guac-A-Mole
 
-[Link Deploy](http://github.com)
+[Play it here!](https://jessevermeulen123.github.io/Guac-A-Mole/)
 
 
 ## Description
