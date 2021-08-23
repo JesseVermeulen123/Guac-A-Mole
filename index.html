@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Guac-A-Mole</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Roboto&display=swap" rel="stylesheet">
+  <!-- https://realfavicongenerator.net/ -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+  <div id="startScreen" class="scene">
+    <div id="title">
+      <h1>Guac-A-Mole</h1>
+      <p>
+        Instructions on how to play
+      </p>
+    </div>
+    <button id="startButton">Start</button>
+  </div>
+  <div id="playScreen" class="scene">
+    <div id="title">
+      <h1>Guac-A-Mole</h1>
+    </div>
+    <div class="scores">
+      <div>
+        <h2>Your score: </h2>
+        <h2 id="score">0</h2>
+      </div>
+  
+      <div>
+        <h2>Time Left: </h2>
+        <h2 id="time-left">60</h2>
+      </div>
+    </div>
+
+    <div class="grid">
+        <div class="square" id="1"></div>
+        <div class="square" id="2"></div>
+        <div class="square" id="3"></div>
+        <div class="square" id="4"></div>
+        <div class="square" id="5"></div>
+        <div class="square" id="6"></div>
+        <div class="square" id="7"></div>
+        <div class="square" id="8"></div>
+        <div class="square" id="9"></div>
+        <div class="square" id="10"></div>
+        <div class="square" id="11"></div>
+        <div class="square" id="12"></div>
+        <div class="square" id="13"></div>
+        <div class="square" id="14"></div>
+        <div class="square" id="15"></div>
+        <div class="square" id="16"></div>
+      
+    </div>
+
+    <div class="controls">
+      <button id="pauseButton">pause</button>
+      <button id="stopButton">stop</button>
+    </div>
+  </div>
+  <div id="winScreen" class="scene">
+    <div id="title">
+      <h1>Winner! Winner! Guac with Dinner!</h1>
+    </div>
+    <div id="bowl">
+      bowl of guac
+    </div>
+    <div id="highScores">
+      <h2>
+        High Scores
+      </h2>
+      <ul>
+        <li>
+          <span class="high-score-name">
+            Jesse
+          </span>
+          <span class="high-score-value">
+            99 999 999 Points
+          </span>
+        </li>
+        <li>
+          <span class="high-score-name">
+            Oliver
+          </span>
+          <span class="high-score-value">
+            5 Points
+          </span>
+        </li>
+      </ul>
+    </div>
+    <button id="highScoresMenuButton">Back to the menu</button>
+  </div>
+
+  <!-- 
+    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/background.js"></script> -->
+  <script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>
