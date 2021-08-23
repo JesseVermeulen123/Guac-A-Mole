@@ -88,10 +88,17 @@
   squares.forEach((square) => {
     square.addEventListener("mousedown", () => {
       if (square.id == hitPosition) {
+        square.style.backgroundImage = 'url("../images/deadAvocado.png")';
         result++;
         score.textContent = result;
         hitPosition = null;
-        square.classList.remove("mole");
+        setTimeout(
+          () => {
+            square.classList.remove("mole");
+            square.style = undefined;
+          },
+          250
+        )
       }
     });
   });
