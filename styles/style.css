@@ -1,4 +1,4 @@
-body {
+* body {
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   width: 100%;
@@ -7,8 +7,8 @@ body {
   align-content: center;
   justify-content: center;
   align-items: center;
-  cursor: url("../images/smollet.png"), auto;
-}
+  /* cursor: url("../images/smollet.png"), auto; */
+} 
 
 h1,
 h2,

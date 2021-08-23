@@ -30,6 +30,7 @@
     clearInterval(countDownTimerId);
     clearInterval(timerId);
   };
+  
   highScoresMenuButton.onclick = (e) => {
     e.preventDefault();
     // We should hide the winScreen, show the startScreen by resetting its CSS class
