@@ -20,14 +20,21 @@ h6 {
   font-family: "Monoton", cursive;
 }
 
+p {
+  font-size: 22px;
+  text-align: center;
+}
+
 .scene {
   width: 880px;
-  height: 660px;
+  /* height: 660px; */
+  height: 770px;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 #title {
@@ -39,41 +46,30 @@ h6 {
   align-items: center;
 }
 
-#highScores {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
+#title h1 {
+  margin-top: 32px;
+  margin-bottom: 32px; 
 }
 
-#highScores ul {
-  width: 100%;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-#highScores li {
-  width: 60%;
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: space-between;
-  align-items: center;
+#title p {
+  padding-left: 32px;
+  padding-right: 32px;
 }
 
 #startButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  border-color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0);
+  background-size: cover;
+  background-image: url("../images/deadAvocado.png");
+}
+
+#startButton:hover {
+  background-image: url("../images/untouchedAvocado.png");
 }
 
 #playScreen h1 {
@@ -82,6 +78,18 @@ h6 {
 
 #winScreen h1 {
     font-size: 2rem;
+}
+
+#loseScreen h1 {
+    font-size: 2rem;
+}
+
+#bowl img {
+  width: 520px;
+}
+
+#deadAvo img {
+  width: 520px;
 }
 
 #playScreen h2 {

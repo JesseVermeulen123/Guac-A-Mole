@@ -22,7 +22,7 @@
         avos as you can and don't let them turn brown!
       </p>
     </div>
-    <button id="startButton">Start</button>
+    <button id="startButton"></button>
   </div>
   <div id="playScreen" class="scene">
     <div id="title">
@@ -62,7 +62,8 @@
 
     <div class="controls">
       <button id="pauseButton">pause</button>
-      <button id="stopButton">stop</button>
+      <button id="loseButton">lose</button>
+      <button id="winButton">win</button>
     </div>
   </div>
   <div id="winScreen" class="scene">
@@ -70,32 +71,20 @@
       <h1>Winner! Winner! Guac with Dinner!</h1>
     </div>
     <div id="bowl">
-      bowl of guac
+      <img src="images/output-onlinepngtools.png" />
     </div>
-    <div id="highScores">
-      <h2>
-        High Scores
-      </h2>
-      <ul>
-        <li>
-          <span class="high-score-name">
-            Jesse
-          </span>
-          <span class="high-score-value">
-            99 999 999 Points
-          </span>
-        </li>
-        <li>
-          <span class="high-score-name">
-            Oliver
-          </span>
-          <span class="high-score-value">
-            5 Points
-          </span>
-        </li>
-      </ul>
+
+    <button id="winScreenMenuButton">Back to the menu</button>
+  </div>
+  <div id="loseScreen" class="scene">
+    <div id="title">
+      <h1>Guac. Guac. Guaaaaaaaaac...</h1>
     </div>
-    <button id="highScoresMenuButton">Back to the menu</button>
+    <div id="deadAvo">
+      <img src="images/deadAvocado.png" />
+    </div>
+
+    <button id="loseScreenMenuButton">Back to the menu</button>
   </div>
 
   <!-- 
