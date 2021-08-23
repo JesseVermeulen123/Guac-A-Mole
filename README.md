@@ -13,7 +13,10 @@ Guac-A-Mole is a game where the player has to click on avocados that spawn rando
 - game has a mallet cursor
 - avocados spawn randomly on the grid
 - avocados with pips will spawn and require to be clicked twice 
+- you win by collecting as many avocados as possible during 60 seconds 
+- time countdown 
 - missing an avocado will make you lose a "life" 
+- if you lose all your lives you lose the game
 - increasing difficulty
 
 ## Backlog
@@ -23,12 +26,15 @@ Backlog elements.
 
 ## Data structure
 
-Classes and methods definition. Or functions.
+# main.js
+
+buildSplashScreen () {}
+buildGameScreen () {}
+buildWinScreen () {}
+buildGameOverScreen () {}
 
 
 ## States y States Transitions
-
-Definition of the different states and their transition (transition functions)
 
 - splashScreen
 - gameScreen
@@ -38,11 +44,18 @@ Definition of the different states and their transition (transition functions)
 
 ## Task
 
-Task definition in order of priority
-
-## Additional Links
-
-https://www.youtube.com/watch?v=rJU3tHLgb_c
+main - buildDom
+main - buildSplashScreen
+main - addEventListener
+main - buildGameScreen
+main - buildGameOverScreen
+main - buildWinScreen
+main - changeCursor
+game - startLoop
+game - addAvocado
+game - checkScore
+game - timeLeft
+game - addEventListener
 
 ### Trello (Actually GitHub Project)
 [Guac-A-Mole](https://github.com/JesseVermeulen123/Guac-A-Mole/projects/1)
