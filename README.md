@@ -26,13 +26,23 @@ Backlog elements.
 
 ## Data structure
 
-# main.js
+# main.js 
 
-buildSplashScreen () {}
-buildGameScreen () {}
-buildWinScreen () {}
-buildGameOverScreen () {}
+- buildSplashScreen () {}
+- buildGameScreen () {}
+- buildGameOverScreen () {}
+- buildWinScreen () {}
 
+# game.js
+
+- Game () {}
+- starLoop () {}
+- checkCollisions () {}
+- addTentacle () {}
+- clearCanvas () {}
+- updateCanvas () {}
+- drawCanvas () {}
+- GameOver () {}
 
 ## States y States Transitions
 
@@ -44,18 +54,18 @@ buildGameOverScreen () {}
 
 ## Task
 
-main - buildDom
-main - buildSplashScreen
-main - addEventListener
-main - buildGameScreen
-main - buildGameOverScreen
-main - buildWinScreen
-main - changeCursor
-game - startLoop
-game - addAvocado
-game - checkScore
-game - timeLeft
-game - addEventListener
+- main - buildDom
+- main - buildSplashScreen
+- main - addEventListener
+- main - buildGameScreen
+- main - buildGameOverScreen
+- main - buildWinScreen
+- main - changeCursor
+- game - startLoop
+- game - addAvocado
+- game - checkScore
+- game - timeLeft
+- game - addEventListener
 
 ### Trello (Actually GitHub Project)
 [Guac-A-Mole](https://github.com/JesseVermeulen123/Guac-A-Mole/projects/1)
