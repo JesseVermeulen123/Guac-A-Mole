@@ -14,13 +14,15 @@
 </head>
 
 <body>
-  <audio id="mainMusic" src="./treffers/4. Peek-a-Boo Var_1.mp3" autoplay volume="0.4" loop>
+  <audio id="mainMusic" src="./treffers/4. Peek-a-Boo Var_1.mp3" autoplay volume="0.2" loop preload>
     Your browser does not support the
     <code>audio</code> element.
   </audio>
+  <audio id="hitFx" src="./treffers/Fruit collect 1.wav" volume="1" preload>
+  </audio>
   <div id="startScreen" class="scene" style="display: flex;">
     <div id="title">
-      <h1>Guac-A-Mole</h1>
+      <h1>GUAC-A-MOLE</h1>
       <p>
         You've been invited to a party and need to make enough guac to
         feed the hordes, use your mallet to start smashing, get as many
@@ -41,23 +43,23 @@
   </div>
   <div id="playScreen" class="scene">
     <div id="title">
-      <h1>Guac-A-Mole</h1>
+      <h1>GUAC-A-MOLE</h1>
     </div>
     <div class="scores">
       <div>
-        <h2>Your score: </h2>
+        <h2 style="margin-right: 8px;">Score:</h2>
         <h2 id="score">0</h2>
-        <h2>/</h2>
+        <h2 style="margin-right: 8px; margin-left: 8px;"> / </h2>
         <h2 id="goal">30</h2>
       </div>
 
       <div>
-        <h2>Lives: </h2>
+        <h2 style="margin-right: 8px;">Lives:</h2>
         <h2 id="livesLeft">5</h2>
       </div>
 
       <div>
-        <h2>Time Left: </h2>
+        <h2 style="margin-right: 8px;">Time:</h2>
         <h2 id="time-left">60</h2>
       </div>
     </div>

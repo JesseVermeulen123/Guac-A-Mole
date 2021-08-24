@@ -236,6 +236,7 @@
   const score = document.querySelector("#score");
   const goal = document.querySelector("#goal");
   const livesLeft = document.querySelector("#livesLeft");
+  const hitFx = document.querySelector("#hitFx");
 
   let result = 0;
   let hitPosition;
@@ -266,6 +267,8 @@
         console.log(`They hit the mole!`)
         square.style.backgroundImage = 'url("./images/greenSplat.png")';
         square.style.backgroundSize = "90%";
+        hitFx.load();
+        hitFx.play();
         result++;
         score.textContent = result;
         hitPosition = null;

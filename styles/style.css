@@ -1,5 +1,5 @@
 body {
-  background: url("../images/background.png");
+  background: url("../images/pxArt.png");
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   width: 100%;
@@ -15,7 +15,15 @@ button:hover {
   cursor: url("../images/mallet.png"), auto; 
 }
 
-h1,
+@font-face {
+  font-family: babyBlocks;
+  src: url("../fonts/baby\ blocks.ttf");
+}
+
+h1 {
+  font-family: babyBlocks, cursive;
+}
+
 h2,
 h3,
 h4,
@@ -33,6 +41,7 @@ p {
   width: 880px;
   /* height: 660px; */
   height: 770px;
+  /* display: flex; */
   display: none;
   flex-direction: column;
   align-content: center;
@@ -42,7 +51,7 @@ p {
 }
 
 #title {
-  font-size: 3rem;
+  font-size: 2rem;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -88,15 +97,15 @@ select {
 }
 
 #playScreen h1 {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 #winScreen h1 {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 #loseScreen h1 {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 #bowl img {
