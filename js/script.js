@@ -5,9 +5,9 @@
   */
   class Scene {
     constructor(name, element, callback) {
-      this.name = name
-      this.element = element
-      this.callback = callback
+      this.name = name;
+      this.element = element;
+      this.callback = callback;
     }
   }
 
@@ -65,7 +65,7 @@
   */
   class Lives {
     constructor() {
-      this.lives = 3;
+      this.lives = 5;
     }
 
     currentLives() {
