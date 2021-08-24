@@ -33,7 +33,7 @@ p {
   width: 880px;
   /* height: 660px; */
   height: 770px;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-content: center;
   justify-content: center;
@@ -58,6 +58,17 @@ p {
 #title p {
   padding-left: 32px;
   padding-right: 32px;
+}
+
+#difficultyDiv {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+select {
+  margin-left: 8px;
+  height: 28px;
 }
 
 #startButton {
