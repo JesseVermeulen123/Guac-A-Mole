@@ -211,6 +211,7 @@
       clearInterval(countDownTimerId);
       clearInterval(timerId);
       alert("GAME OVER! Your final score is " + result);
+      sceneManager.changeScene("lose")
     }
   }
 })();

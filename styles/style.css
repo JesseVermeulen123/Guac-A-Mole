@@ -1,4 +1,4 @@
-* body {
+body {
   background: url("../images/background.png");
   font-family: "Roboto", sans-serif;
   font-size: 24px;
@@ -8,7 +8,11 @@
   align-content: center;
   justify-content: center;
   align-items: center;
-  /* cursor: url("../images/smollet.png"), auto; */
+  cursor: url("../images/mallet.png"), auto; 
+}
+
+button:hover {
+  cursor: url("../images/mallet.png"), auto; 
 }
 
 h1,
@@ -85,7 +89,7 @@ p {
 }
 
 #bowl img {
-  width: 520px;
+  width: 480px;
 }
 
 #deadAvo img {
