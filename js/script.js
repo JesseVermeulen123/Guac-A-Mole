@@ -163,6 +163,7 @@
   const mole = document.querySelector(".mole");
   const timeLeft = document.querySelector("#time-left");
   const score = document.querySelector("#score");
+  // const livesLeft = document.querySelector("#livesLeft");
 
   let result = 0;
   let hitPosition;
@@ -206,6 +207,7 @@
   function countDown() {
     currentTime--;
     timeLeft.textContent = currentTime;
+    // livesLeft.textContent = currentTime;
 
     if (currentTime == 0) {
       clearInterval(countDownTimerId);
