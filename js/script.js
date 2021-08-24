@@ -1,4 +1,102 @@
 (function () {
+  /*
+  Scene
+  - Group short names of scenes with their HTMLElements
+  */
+  class Scene {
+    constructor(name, element, callback) {
+      this.name = name
+      this.element = element
+      this.callback = callback
+    }
+  }
+
+  /*
+  SceneManager
+  - Change scenes
+  */
+  class SceneManager {
+    constructor(scenes) {
+      this.scenes = scenes;
+    }
+
+    changeScene(name) {
+      let callback;
+      this.scenes.forEach((scene) => {
+        if (scene.name === name) {
+          scene.element.style.display = "flex";
+          callback = scene.callback;
+        } else {
+          scene.element.style.display = "none";
+        }
+      })
+      if (callback !== undefined) {
+        callback();
+      }
+    }
+  }
+
+  /*
+  Game
+  - Update board
+  - Update lives
+  - Update score
+  - Watch Timer
+  */
+  class Game {
+    constructor() {
+      this.difficulty = 0;
+      this.lives = new Lives();
+      this.score = new Score();
+      this.timer = new Timer();
+    }
+  }
+
+  /*
+  Lives
+  - Track lives
+  */
+  class Lives {
+    constructor() {
+      this.lives = 3;
+    }
+
+    currentLives() {
+      return this.lives;
+    }
+
+    increaseScore() {
+      this.lives--;
+    }
+  }
+
+  /*
+  Score
+  - Track score
+  */
+  class Score {
+    constructor() {
+      this.score = 0;
+    }
+
+    currentScore() {
+      return this.score;
+    }
+
+    increaseScore() {
+      this.score++;
+    }
+  }
+
+  /*
+  Timer
+  - 
+  */
+  class Timer {
+
+  }
+
+
   const startButton = document.getElementById("startButton");
   const pauseButton = document.getElementById("pauseButton");
   const loseButton = document.getElementById("loseButton");
@@ -9,16 +107,29 @@
   const playScreen = document.getElementById("playScreen");
   const winScreen = document.getElementById("winScreen");
   const loseScreen = document.getElementById("loseScreen");
-  startButton.onclick = (e) => {
-    e.preventDefault();
-    // We should hide the startScreen, show the playScreen by resetting its CSS class, and reset the board and score
-    loseScreen.style.display = "none";
-    startScreen.style.display = "none";
-    winScreen.style.display = "none";
-    playScreen.style.display = "flex";
+  // TODO: Move this to Game class
+  const startGame = () => {
+    // TODO: Move this into Game
     // Start the game
     moveMole();
     countDownTimerId = setInterval(countDown, 1000);
+  }
+  const endGame = () => {
+    // TODO: Move this to Game
+    // Giving up so lets stop the timers
+    clearInterval(countDownTimerId);
+    clearInterval(timerId);
+  }
+  const scenes = [
+    new Scene("start", startScreen),
+    new Scene("play", playScreen, startGame),
+    new Scene("win", winScreen, endGame),
+    new Scene("lose", loseScreen, endGame),
+  ]
+  const sceneManager = new SceneManager(scenes);
+  startButton.onclick = (e) => {
+    e.preventDefault();
+    sceneManager.changeScene("play")
   };
   pauseButton.onclick = (e) => {
     e.preventDefault();
@@ -26,44 +137,28 @@
   };
   loseButton.onclick = (e) => {
     e.preventDefault();
-    // We should hide the playScreen, show the loseScreen by resetting its CSS class, and stop all the game intervals
-    loseScreen.style.display = "flex";
-    startScreen.style.display = "none";
-    playScreen.style.display = "none";
-    winScreen.style.display = "none";
-    // Giving up so lets stop the timers
-    clearInterval(countDownTimerId);
-    clearInterval(timerId);
+    sceneManager.changeScene("lose")
   };
   winButton.onclick = (e) => {
     e.preventDefault();
-    // We should hide the playScreen, show the loseScreen by resetting its CSS class, and stop all the game intervals
-    loseScreen.style.display = "none";
-    startScreen.style.display = "none";
-    playScreen.style.display = "none";
-    winScreen.style.display = "flex";
-    // Giving up so lets stop the timers
-    clearInterval(countDownTimerId);
-    clearInterval(timerId);
+    sceneManager.changeScene("win")
   };
   
   winScreenMenuButton.onclick = (e) => {
     e.preventDefault();
+    // TODO: Move this to use scene manager
     // We should hide the winScreen, show the startScreen by resetting its CSS class
-    loseScreen.style.display = "none";
-    winScreen.style.display = "none";
-    playScreen.style.display = "none";
-    startScreen.style.display = "flex";
+    sceneManager.changeScene("start")
   };
   
   loseScreenMenuButton.onclick = (e) => {
     e.preventDefault();
+    // TODO: Move this to use scene manager
     // We should hide the winScreen, show the startScreen by resetting its CSS class
-    loseScreen.style.display = "none";
-    winScreen.style.display = "none";
-    playScreen.style.display = "none";
-    startScreen.style.display = "flex";
+    sceneManager.changeScene("start")
   };
+
+  // TODO: Move as much as possible below to Game
   const squares = document.querySelectorAll(".square");
   const mole = document.querySelector(".mole");
   const timeLeft = document.querySelector("#time-left");
