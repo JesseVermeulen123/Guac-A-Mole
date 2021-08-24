@@ -183,7 +183,8 @@
   squares.forEach((square) => {
     square.addEventListener("mousedown", () => {
       if (square.id == hitPosition) {
-        square.style.backgroundImage = 'url("../images/deadAvocado.png")';
+        square.style.backgroundImage = 'url("../images/greenSplat.png")';
+        square.style.backgroundSize = "90%";
         result++;
         score.textContent = result;
         hitPosition = null;
