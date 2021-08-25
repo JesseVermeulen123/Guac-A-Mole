@@ -131,11 +131,15 @@
 
     hitMole(square) {
       console.log(`They hit the mole!`)
+      this.score.increaseScore();
+      if (this.score.currentScore() >= this.score.limit()) {
+        this.win();
+        return;
+      }
       square.style.backgroundImage = 'url("./images/greenSplat.png")';
       square.style.backgroundSize = "90%";
       hitFx.load();
       hitFx.play();
-      this.score.increaseScore();
       score.textContent = this.score.currentScore();
       this.hitPosition = null;
       clearInterval(this.timerId);
@@ -145,9 +149,6 @@
         this.randomSquare()
         this.moveMole()
       }, this.splatTime);
-      if (this.score.currentScore() >= this.score.limit()) {
-        this.win();
-      }
     }
 
     missMole() {
