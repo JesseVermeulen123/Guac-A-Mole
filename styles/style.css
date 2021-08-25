@@ -2,7 +2,9 @@ body {
   background: url("../images/pxArt.png");
   font-family: "Roboto", sans-serif;
   font-size: 24px;
+  text-align: center;
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -35,6 +37,30 @@ h6 {
 p {
   font-size: 22px;
   text-align: center;
+}
+
+button {
+  height: 2rem;
+  border: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: white;
+  background-color: darkgreen;
+  font-family: 'Roboto';
+  font-size: 18px;
+  margin-top: 2rem;
+}
+
+select {
+  text-align: center;
+  width: 168px; 
+  height: 2rem;
+  border: none;
+  color: white;
+  background-color: darkgreen;
+  font-family: 'Roboto';
+  font-size: 18px;
+  margin-left: 8px;
 }
 
 .scene {
@@ -75,11 +101,6 @@ p {
   flex-direction: row;
 }
 
-select {
-  margin-left: 8px;
-  height: 28px;
-}
-
 #startButton {
   display: flex;
   align-items: center;
@@ -115,7 +136,7 @@ select {
 }
 
 #deadAvo img {
-  width: 440px;
+  width: 360px;
 }
 
 #playScreen h2 {
@@ -141,6 +162,7 @@ select {
   flex-wrap: wrap;
   background-color: #6e3300;
   background-image: url("../images/wood-pattern.png");
+  background-size: cover;
 }
 
 .square {
