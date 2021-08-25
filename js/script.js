@@ -265,12 +265,12 @@
         interval = 800;
         break;
       case 1:
-        limit = 45;
+        limit = 30;
         currentTime = 30;
         interval = 1000;
         break;
       default:
-        limit = 30;
+        limit = 20;
         currentTime = 30;
         interval = 1000;
         break;
