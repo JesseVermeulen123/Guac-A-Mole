@@ -5,23 +5,27 @@
 
 ## Description
 
-Guac-A-Mole is a game where the player has to click on avocados that spawn randomly to keep them from filling up the grid on screen. The cursor will be turned in to a mallet that will be used to smash the avocados. The game ends when the player has missed three avocados. The player wins when they pass all the rounds with at least one life in tact. 
+Guac-A-Mole is a game where the objective is to make enough guacamole for a party you have been invited to. 
+To do this a mallet that will be used to smash avocados in a whac-a-mole manner. 
+The player loses when they have missed five avocados. 
+The player wins when they collect the required amount of avocados in the given time and have at least one life remaining. 
+
 
 
 ## MVP
 
 - game has a mallet cursor
 - avocados spawn randomly on the grid
-- avocados with pips will spawn and require to be clicked twice 
-- you win by collecting as many avocados as possible during 60 seconds 
+- you win by collecting the required amount of avocados as possible during the time alloted. 
 - time countdown 
 - missing an avocado will make you lose a "life" 
-- if you lose all your lives you lose the game
-- increasing difficulty
+- if you lose all five lives, you lose the game
+- increased difficulty levels
 
 ## Backlog
 
-Backlog elements.
+- Randomise ingredients 
+- Add health-bar 
 
 
 ## Data structure
@@ -68,8 +72,8 @@ Backlog elements.
 - game - addEventListener
 
 ### Trello (Actually GitHub Project)
-[Guac-A-Mole](https://github.com/JesseVermeulen123/Guac-A-Mole/projects/1)
+[Guac-A-Mole Project](https://github.com/JesseVermeulen123/Guac-A-Mole/projects/1)
 
 
 ### Slides
-[Link Slides.com](http://slides.com)
+[Guac-A-Mole Presentation](https://docs.google.com/presentation/d/1EoPjQ0tQImXnU_Hrr_7SnjuBWYLYrL3Y8OFowSrWEco/edit?usp=sharing)
