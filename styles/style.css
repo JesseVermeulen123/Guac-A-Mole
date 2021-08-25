@@ -1,5 +1,5 @@
 body {
-  background: url("../images/pxArt.png");
+  background: url("../images/background.png");
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   text-align: center;
@@ -110,12 +110,12 @@ select {
   border-color: rgba(255, 255, 255, 0);
   background-color: rgba(255, 255, 255, 0);
   background-size: contain;
-  background-image: url("../images/startAvocado.png");
+  background-image: url("../images/start-avocado.png");
   background-repeat: no-repeat;
 }
 
 #startButton:hover {
-  background-image: url("../images/greenSplat.png");
+  background-image: url("../images/green-splat.png");
   background-size: 90%;
 }
 
@@ -172,7 +172,7 @@ select {
 }
 
 .mole {
-  background-image: url("../images/deadAvocado.png");
+  background-image: url("../images/avocado.png");
   background-size: contain;
   background-repeat: no-repeat;
 }

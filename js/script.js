@@ -136,7 +136,7 @@
         this.win();
         return;
       }
-      square.style.backgroundImage = 'url("./images/greenSplat.png")';
+      square.style.backgroundImage = 'url("./images/green-splat.png")';
       square.style.backgroundSize = "90%";
       hitFx.load();
       hitFx.play();
