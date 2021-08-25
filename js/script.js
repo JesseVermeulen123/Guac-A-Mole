@@ -45,7 +45,7 @@
   - Watch Timer
   */
   class Game {
-    constructor(scoreLimit, timeLimit, moleSpawnInterval) {
+    constructor(scoreLimit, timeLimit, moleSpawnInterval, splatTime) {
       if (scoreLimit === undefined) {
         throw new Error("Game: scoreLimit is required")
       }
@@ -55,10 +55,14 @@
       if (moleSpawnInterval === undefined) {
         throw new Error("Game: moleSpawnInterval is required")
       }
+      if (splatTime === undefined) {
+        throw new Error("Game: splatTime is required")
+      }
       this.lives = new Lives();
       this.score = new Score(scoreLimit);
       this.timer = new Timer(timeLimit);
       this.moleSpawnInterval = moleSpawnInterval;
+      this.splatTime = splatTime;
       this.timerId = null;
       this.countDownTimerId = null;
       this.hitPosition = null;
@@ -87,13 +91,13 @@
 
     win() {
       this.end();
-      alert(`YOU DID IT! Your final score is ${this.score.currentScore()}`);
+      winResult.textContent = `Your final score was ${this.score.currentScore()} with ${this.lives.currentLives()} lives and ${this.timer.currentTime()}s left.`;
       sceneManager.changeScene("win");
     }
 
     lose() {
       this.end()
-      alert(`GAME OVER! Your final score is ${this.score.currentScore()}`);
+      loseResult.textContent = `Your final score was ${this.score.currentScore()}/${this.score.limit()}.`;
       sceneManager.changeScene("lose");
     }
 
@@ -140,7 +144,7 @@
         square.style = undefined;
         this.randomSquare()
         this.moveMole()
-      }, 200);
+      }, this.splatTime);
       if (this.score.currentScore() >= this.score.limit()) {
         this.win();
       }
@@ -239,6 +243,8 @@
   const playScreen = document.getElementById("playScreen");
   const winScreen = document.getElementById("winScreen");
   const loseScreen = document.getElementById("loseScreen");
+  const winResult = document.getElementById("winResult");
+  const loseResult = document.getElementById("loseResult");
   // TODO: Move this to Game class
   const startGame = () => {
     // TODO: Move this into Game
@@ -252,17 +258,20 @@
     let limit;
     let currentTime;
     let interval;
+    let splatTime = 200;
     console.log("Resetting scores");
     switch (difficulty) {
       case 3:
         limit = 120;
         currentTime = 60;
         interval = 600;
+        splatTime = 25;
         break;
       case 2:
         limit = 90;
         currentTime = 60;
         interval = 800;
+        splatTime = 50;
         break;
       case 1:
         limit = 30;
@@ -275,7 +284,7 @@
         interval = 1000;
         break;
     }
-    game = new Game(limit, currentTime, interval);
+    game = new Game(limit, currentTime, interval, splatTime);
     game.start();
   };
   const scenes = [
