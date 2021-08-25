@@ -88,12 +88,14 @@ select {
   height: 200px;
   border-color: rgba(255, 255, 255, 0);
   background-color: rgba(255, 255, 255, 0);
-  background-size: cover;
+  background-size: contain;
   background-image: url("../images/startAvocado.png");
+  background-repeat: no-repeat;
 }
 
 #startButton:hover {
   background-image: url("../images/greenSplat.png");
+  background-size: 90%;
 }
 
 #playScreen h1 {

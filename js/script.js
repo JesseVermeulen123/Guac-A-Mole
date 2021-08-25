@@ -61,6 +61,7 @@
       this.moleSpawnInterval = moleSpawnInterval;
       this.timerId = null;
       this.countDownTimerId = null;
+      this.hitPosition = null;
     }
 
     start() {
@@ -96,9 +97,23 @@
       sceneManager.changeScene("lose");
     }
 
+    randomSquare() {
+      squares.forEach((square) => {
+        square.classList.remove("mole");
+      });
+
+      let newID = Math.floor(Math.random() * 16);
+      console.log(`Moving mole to ${newID}`)
+
+      let randomSquare = squares[newID];
+      randomSquare.classList.add("mole");
+
+      this.hitPosition = randomSquare.id;
+    }
+
     moveMole() {
       clearInterval(this.timerId)
-      this.timerId = setInterval(randomSquare, this.moleSpawnInterval);
+      this.timerId = setInterval(() => {this.randomSquare()}, this.moleSpawnInterval);
     }
   
     countDown() {
@@ -118,12 +133,12 @@
       hitFx.play();
       this.score.increaseScore();
       score.textContent = this.score.currentScore();
-      hitPosition = null;
+      this.hitPosition = null;
       clearInterval(this.timerId);
       setTimeout(() => {
         square.classList.remove("mole");
         square.style = undefined;
-        randomSquare()
+        this.randomSquare()
         this.moveMole()
       }, 200);
       if (this.score.currentScore() >= this.score.limit()) {
@@ -291,8 +306,8 @@
 
   difficultyPicker.onchange = (e) => {
     const newDifficulty = e.target.value;
-    console.log(`Difficulty changed to ${e.target.value}`);
-    switch (e.target.value) {
+    console.log(`Difficulty changed to ${newDifficulty}`);
+    switch (newDifficulty) {
       case "extreme":
         difficulty = 3;
         break;
@@ -310,7 +325,6 @@
 
   // TODO: Move as much as possible below to Game
   const squares = document.querySelectorAll(".square");
-  const mole = document.querySelector(".mole");
   const timeLeft = document.querySelector("#time-left");
   const score = document.querySelector("#score");
   const goal = document.querySelector("#goal");
@@ -318,26 +332,11 @@
   const hitFx = document.querySelector("#hitFx");
 
   let game;
-  let hitPosition;
   let difficulty = 0;
-
-  function randomSquare() {
-    squares.forEach((square) => {
-      square.classList.remove("mole");
-    });
-
-    let newID = Math.floor(Math.random() * 16);
-    console.log(`Moving mole to ${newID}`)
-
-    let randomSquare = squares[newID];
-    randomSquare.classList.add("mole");
-
-    hitPosition = randomSquare.id;
-  }
 
   squares.forEach((square) => {
     square.addEventListener("mousedown", () => {
-      if (square.id == hitPosition) {
+      if (square.id === game.hitPosition) {
         game.hitMole(square);
       } else {
         game.missMole();
