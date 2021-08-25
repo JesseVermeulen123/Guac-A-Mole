@@ -45,17 +45,100 @@
   - Watch Timer
   */
   class Game {
-    constructor(difficulty, goal) {
-      if (difficulty === undefined) {
-        throw new Error("Game: difficulty is required")
+    constructor(scoreLimit, timeLimit, moleSpawnInterval) {
+      if (scoreLimit === undefined) {
+        throw new Error("Game: scoreLimit is required")
       }
-      if (goal === undefined) {
-        throw new Error("Game: goal is required")
+      if (timeLimit === undefined) {
+        throw new Error("Game: timeLimit is required")
       }
-      this.difficulty = difficulty;
+      if (moleSpawnInterval === undefined) {
+        throw new Error("Game: moleSpawnInterval is required")
+      }
       this.lives = new Lives();
-      this.score = new Score(goal);
-      this.timer = new Timer();
+      this.score = new Score(scoreLimit);
+      this.timer = new Timer(timeLimit);
+      this.moleSpawnInterval = moleSpawnInterval;
+      this.timerId = null;
+      this.countDownTimerId = null;
+    }
+
+    start() {
+      // We shouldn't need these, since we're creating the game each time we start
+      // game.score.reset();
+      // this.lives.reset();
+      // this.timer.reset();
+      score.textContent = this.score.currentScore();
+      timeLeft.textContent = this.timer.currentTime();
+      livesLeft.textContent = this.lives.currentLives();
+      goal.textContent = this.score.limit();
+      // Start the game
+      this.moveMole();
+      this.countDownTimerId = setInterval(this.countDown, 1000);
+    }
+
+    end() {
+      // Giving up so lets stop the timers
+      console.log("Ending game timers");
+      clearInterval(this.countDownTimerId);
+      clearInterval(this.timerId);
+    }
+
+    win() {
+      this.end();
+      alert(`YOU DID IT! Your final score is ${this.score.currentScore()}`);
+      sceneManager.changeScene("win");
+    }
+
+    lose() {
+      this.end()
+      alert(`GAME OVER! Your final score is ${this.score.currentScore()}`);
+      sceneManager.changeScene("lose");
+    }
+
+    moveMole() {
+      clearInterval(this.timerId)
+      this.timerId = setInterval(randomSquare, this.moleSpawnInterval);
+    }
+  
+    countDown() {
+      game.timer.decreaseTimer();
+      timeLeft.textContent = game.timer.currentTime();
+  
+      if (game.timer.currentTime() == 0) {
+        game.lose()
+      }
+    }
+
+    hitMole(square) {
+      console.log(`They hit the mole!`)
+      square.style.backgroundImage = 'url("./images/greenSplat.png")';
+      square.style.backgroundSize = "90%";
+      hitFx.load();
+      hitFx.play();
+      this.score.increaseScore();
+      score.textContent = this.score.currentScore();
+      hitPosition = null;
+      clearInterval(this.timerId);
+      setTimeout(() => {
+        square.classList.remove("mole");
+        square.style = undefined;
+        randomSquare()
+        this.moveMole()
+      }, 200);
+      if (this.score.currentScore() >= this.score.limit()) {
+        this.win();
+      }
+    }
+
+    missMole() {
+      console.log(`Uh oh... They missed the mole...`)
+      this.lives.decreaseLives();
+      if (this.lives.currentLives() < 0) {
+        this.lose();
+      } else {
+        livesLeft.textContent = this.lives.currentLives();
+      }
     }
   }
 
@@ -72,7 +155,7 @@
       return this.lives;
     }
 
-    increaseScore() {
+    decreaseLives() {
       this.lives--;
     }
   }
@@ -94,8 +177,16 @@
       return this.score;
     }
 
+    limit() {
+      return this.goal
+    }
+
     increaseScore() {
       this.score++;
+    }
+
+    reset() {
+      this.score = 0;
     }
   }
 
@@ -104,16 +195,28 @@
   - 
   */
   class Timer {
-    constructor(limit) {
-      this.limit = limit
+    constructor(value) {
+      this.value = value
+    }
+
+    currentTime() {
+      return this.value
+    }
+
+    decreaseTimer() {
+      this.value--
+    }
+
+    reset(value) {
+      if (value === undefined) {
+        throw new Error("Timer.reset: value is required")
+      }
+      this.value = value
     }
   }
 
   const mainMusic = document.getElementById("mainMusic");
   const startButton = document.getElementById("startButton");
-  const pauseButton = document.getElementById("pauseButton");
-  const loseButton = document.getElementById("loseButton");
-  const winButton = document.getElementById("winButton");
   const difficultyPicker = document.getElementById("difficulty");
   const winScreenMenuButton = document.getElementById("winScreenMenuButton");
   const loseScreenMenuButton = document.getElementById("loseScreenMenuButton");
@@ -131,9 +234,10 @@
     }
 
     // Reset scores, in case we're restarting
+    let limit;
+    let currentTime;
+    let interval;
     console.log("Resetting scores");
-    result = 0;
-    lives = 5;
     switch (difficulty) {
       case 3:
         limit = 120;
@@ -156,44 +260,19 @@
         interval = 1000;
         break;
     }
-    score.textContent = result;
-    timeLeft.textContent = currentTime;
-    livesLeft.textContent = lives;
-    goal.textContent = limit;
-
-    // Start the game
-    moveMole();
-    countDownTimerId = setInterval(countDown, 1000);
-  };
-  const endGame = () => {
-    // TODO: Move this to Game
-    // Giving up so lets stop the timers
-    console.log("Ending game timers");
-    clearInterval(countDownTimerId);
-    clearInterval(timerId);
+    game = new Game(limit, currentTime, interval);
+    game.start();
   };
   const scenes = [
     new Scene("start", startScreen),
     new Scene("play", playScreen, startGame),
-    new Scene("win", winScreen, endGame),
-    new Scene("lose", loseScreen, endGame),
+    new Scene("win", winScreen),
+    new Scene("lose", loseScreen),
   ];
   const sceneManager = new SceneManager(scenes);
   startButton.onclick = (e) => {
     e.preventDefault();
     sceneManager.changeScene("play");
-  };
-  pauseButton.onclick = (e) => {
-    e.preventDefault();
-    // We should pause all the game intervals
-  };
-  loseButton.onclick = (e) => {
-    e.preventDefault();
-    sceneManager.changeScene("lose");
-  };
-  winButton.onclick = (e) => {
-    e.preventDefault();
-    sceneManager.changeScene("win");
   };
 
   winScreenMenuButton.onclick = (e) => {
@@ -238,14 +317,9 @@
   const livesLeft = document.querySelector("#livesLeft");
   const hitFx = document.querySelector("#hitFx");
 
-  let result = 0;
+  let game;
   let hitPosition;
-  let currentTime = 60;
-  let timerId = null;
   let difficulty = 0;
-  let limit = 30;
-  let interval = 0;
-  let lives = 5;
 
   function randomSquare() {
     squares.forEach((square) => {
@@ -264,57 +338,10 @@
   squares.forEach((square) => {
     square.addEventListener("mousedown", () => {
       if (square.id == hitPosition) {
-        console.log(`They hit the mole!`)
-        square.style.backgroundImage = 'url("./images/greenSplat.png")';
-        square.style.backgroundSize = "90%";
-        hitFx.load();
-        hitFx.play();
-        result++;
-        score.textContent = result;
-        hitPosition = null;
-        clearInterval(timerId);
-        setTimeout(() => {
-          square.classList.remove("mole");
-          square.style = undefined;
-          randomSquare()
-          moveMole()
-        }, 200);
-        if (result >= limit) {
-          clearInterval(countDownTimerId);
-          clearInterval(timerId);
-          alert(`YOU DID IT! Your final score is ${result}`);
-          sceneManager.changeScene("win");
-        }
+        game.hitMole(square);
       } else {
-        console.log(`Uh oh... They missed the mole...`)
-        lives--;
-        if (lives < 0) {
-          clearInterval(countDownTimerId);
-          clearInterval(timerId);
-          alert("GAME OVER! Your final score is " + result);
-          sceneManager.changeScene("lose");
-        } else {
-          livesLeft.textContent = lives;
-        }
+        game.missMole();
       }
     });
   });
-
-  function moveMole() {
-    clearInterval(timerId)
-    timerId = setInterval(randomSquare, interval);
-  }
-
-  function countDown() {
-    currentTime--;
-    timeLeft.textContent = currentTime;
-    // livesLeft.textContent = currentTime;
-
-    if (currentTime == 0) {
-      clearInterval(countDownTimerId);
-      clearInterval(timerId);
-      alert("GAME OVER! Your final score is " + result);
-      sceneManager.changeScene("lose");
-    }
-  }
 })();
