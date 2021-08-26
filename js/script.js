@@ -69,6 +69,12 @@
     }
 
     start() {
+      // Start music
+      if (mainMusic.paused) {
+        console.log("Starting paused music");
+        mainMusic.load();
+        mainMusic.play();
+      }
       // We shouldn't need these, since we're creating the game each time we start
       // game.score.reset();
       // this.lives.reset();
@@ -96,6 +102,9 @@
     }
 
     lose() {
+      mainMusic.pause();
+      loseSound.load();
+      loseSound.play();
       this.end()
       loseResult.textContent = `Your final score was ${this.score.currentScore()}/${this.score.limit()}.`;
       sceneManager.changeScene("lose");
@@ -249,11 +258,6 @@
   // TODO: Move this to Game class
   const startGame = () => {
     // TODO: Move this into Game
-    // Start music
-    if (mainMusic.paused) {
-      console.log("Starting paused music");
-      mainMusic.play();
-    }
 
     // Reset scores, in case we're restarting
     let limit;
@@ -340,6 +344,7 @@
   const goal = document.querySelector("#goal");
   const livesLeft = document.querySelector("#livesLeft");
   const hitFx = document.querySelector("#hitFx");
+  const loseSound = document.querySelector("#loseSound");
 
   let game;
   let difficulty = 0;
