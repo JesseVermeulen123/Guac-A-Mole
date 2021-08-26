@@ -1,6 +1,6 @@
 body {
   background: url("../images/background.png");
-  font-family: "Roboto", sans-serif;
+  font-family: "dogica", sans-serif;
   font-size: 24px;
   text-align: center;
   width: 100%;
@@ -26,12 +26,18 @@ h1 {
   font-family: babyBlocks, cursive;
 }
 
+@font-face {
+  font-family: dogica;
+  src: url("../fonts/dogica.ttf");
+}
+
+
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: "Monoton", cursive;
+  font-family: "babyBlocks", cursive;
 }
 
 p {
@@ -46,7 +52,7 @@ button {
   padding-right: 1rem;
   color: white;
   background-color: darkgreen;
-  font-family: 'Roboto';
+  font-family: 'dogica';
   font-size: 18px;
   margin-top: 2rem;
 }
@@ -58,7 +64,7 @@ select {
   border: none;
   color: white;
   background-color: darkgreen;
-  font-family: 'Roboto';
+  font-family: 'dogica';
   font-size: 18px;
   margin-left: 8px;
 }
